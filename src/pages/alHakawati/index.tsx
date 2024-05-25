@@ -9,9 +9,7 @@ const AlHakawatiPage = () => {
         <Link to={"camera-input"}>
           <Button
             className="text-xl py-2 px-4"
-            variant={
-              pathname === "/al-hakawati/camera-input" ? "default" : "outline"
-            }
+            variant={pathname === "/camera-input" ? "default" : "outline"}
           >
             إلتقاط صورة من الكميرا
           </Button>
@@ -19,9 +17,7 @@ const AlHakawatiPage = () => {
         <Link to={"file-input"}>
           <Button
             className="text-xl py-2 px-4"
-            variant={
-              pathname === "/al-hakawati/file-input" ? "default" : "outline"
-            }
+            variant={pathname === "/file-input" ? "default" : "outline"}
           >
             تحميل صورة من الحاسوب
           </Button>

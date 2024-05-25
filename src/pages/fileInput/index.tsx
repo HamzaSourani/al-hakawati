@@ -68,7 +68,11 @@ const FileInputPage = () => {
         className="relative group p-8 bg-white shadow-md shadow-white rounded-md cursor-pointer"
         onClick={handleFileInputClick}
       >
-        <BearPajama className="fill-primary group-hover:scale-105 transition-transform w-40  aspect-square" />
+        <img
+          className="fill-primary group-hover:scale-105 transition-transform w-40  aspect-square"
+          src="/assets/images/pajama.jpg"
+          alt="pajama"
+        />
         <input
           type="file"
           ref={fileInputRef}

@@ -189,7 +189,7 @@ const SubscribeForm = () => {
               disabled={form.formState.isSubmitting}
               size={"sm"}
             >
-              {"ارسال"}
+              {"تسجيل دخول"}
               {form.formState.isSubmitting ? (
                 <LoaderCircleIcon className="mr-2 w-4 animate-spin fill-secondary " />
               ) : (
