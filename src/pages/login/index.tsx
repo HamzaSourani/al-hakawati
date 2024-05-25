@@ -73,7 +73,7 @@ const SubscribeForm = () => {
       const res = await fakeApi(values);
       localStorage.setItem("userInfo", JSON.stringify(res));
       form.reset();
-      navigate("/al-hakawati/file-input");
+      navigate("/");
     } catch (error) {}
   };
   return (
