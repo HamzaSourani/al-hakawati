@@ -1,9 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Webcam from "react-webcam";
 import { Button } from "../../components/ui/button";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "../../components/ui/dialog";
 const CameraInputPage = () => {
+  const [open, setOpen] = useState(false);
+
   const webcamRef = React.useRef<Webcam>(null!);
   const navigate = useNavigate();
 
@@ -40,8 +51,14 @@ const CameraInputPage = () => {
       formData.append("category", category);
       try {
         const { data } = await axios.post(`${URL}/receive_story`, formData);
-        navigate(`/result/${data.name}`);
-      } catch (error) {}
+        if (String(data.name) === "0") {
+          setOpen(true);
+        } else {
+          navigate(`/result/${data.name}`);
+        }
+      } catch (error) {
+        setOpen(true);
+      }
     };
     reader.readAsDataURL(imgFile!);
   }, [webcamRef, navigate]);
@@ -55,6 +72,44 @@ const CameraInputPage = () => {
         screenshotFormat="image/jpeg"
       />
       <Button onClick={capture}>إلتقاط الصورة</Button>
+      <Dialog open={open} onOpenChange={setOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle className="pt-3 text-end">
+              تنبيه بيجما الحكواتية
+            </DialogTitle>
+            <DialogDescription>
+              <p className="text-end">
+                نلاحظ أنّك رفعت صورة لا تحتوي رسمة من الرسمات الموجودة ضمن
+                بيجاما الحكواتية.تأكد من شراء بيجماتنا لتتمتع بخدماتنا بالكامل
+              </p>
+              <div className="flex gap-2 justify-center py-4">
+                <img
+                  src="/assets/images/pajama1.png"
+                  className="w-28 aspect-square object-cover rounded-lg"
+                  alt="pajama1"
+                />
+                <img
+                  src="/assets/images/pajama2.png"
+                  className="w-28 aspect-square object-cover rounded-lg"
+                  alt="pajama2"
+                />
+                <img
+                  src="/assets/images/pajama3.png"
+                  className="w-28 aspect-square object-cover rounded-lg"
+                  alt="pajama3"
+                />
+              </div>
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <DialogClose asChild>
+              <Button variant={"outline"}>لاحقا</Button>
+            </DialogClose>
+            <Button>اطلب الآن</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };

@@ -52,12 +52,7 @@ const formSchema = Z.object({
 const fakeApi = (params: Z.infer<typeof formSchema>) =>
   new Promise((resolve, reject) => {
     setTimeout(() => {
-      const randomValue = Math.random();
-      if (randomValue > 0.5) {
-        resolve(params);
-      } else {
-        reject();
-      }
+      resolve(params);
     }, 1000);
   });
 const SubscribeForm = () => {
