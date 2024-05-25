@@ -15,7 +15,7 @@ function App() {
   return (
     <div
       style={{ backgroundImage: `url(${bg})` }}
-      className="h-screen overflow-hidden bg-red-300 bg-blend-hard-light bg-contain  bg-center"
+      className="h-screen  overflow-hidden bg-red-300 bg-blend-hard-light bg-contain  bg-center"
     >
       <div className=" m-auto">
         <header className="flex shadow-lg justify-between items-center py-2   px-8    bg-white/50  backdrop-blur-sm  mb-4">
@@ -28,7 +28,9 @@ function App() {
             />
           </div>
         </header>
-        <Outlet />
+        <div className="flex justify-center">
+          <Outlet />
+        </div>
       </div>
     </div>
   );
