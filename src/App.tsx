@@ -63,9 +63,7 @@ function App() {
             </Dialog>
           )}
         </header>
-        <div className="flex justify-center">
-          <Outlet />
-        </div>
+        <Outlet />
       </div>
     </div>
   );
