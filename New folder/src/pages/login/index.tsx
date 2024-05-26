@@ -31,7 +31,7 @@ const defaultValues: Z.infer<typeof formSchema> = {
 };
 const formSchema = Z.object({
   name: Z.string({ required_error: "الرجاء إدخال اسم الطفل" }).min(3, {
-    message: "الأسم يجب ان يوكن مؤالف من ثلاث محارف على الاقل",
+    message: "الاسم يجب ان يوكن مؤالف من ثلاث محارف على الاقل",
   }),
   ageCategory: Z.enum(["1", "2"]),
   isParent: Z.string(),
@@ -79,7 +79,7 @@ const SubscribeForm = () => {
   return (
     <div className="flex flex-col justify-center items-center gap-8 rounded-xl bg-white/50 py-8 px-16 backdrop-blur-sm min-h-[60vh]   ">
       <h1 className="text-xl md:text-2xl  lg:text-3xl font-bold">
-        قم بتسجيل الدخول للتمتع باروع قصص الاطفال
+        قم بتسجيل الدخول للتمتع بأروع قصص الاطفال
       </h1>
       <Form {...form}>
         <form
@@ -117,9 +117,9 @@ const SubscribeForm = () => {
               name="name"
               render={({ field }) => (
                 <FormItem className="">
-                  <FormLabel>{"الأسم"}</FormLabel>
+                  <FormLabel>{"الاسم"}</FormLabel>
                   <FormControl>
-                    <Input {...field} placeholder={"قم بادخال الأسم"} />
+                    <Input {...field} placeholder={"قم بادخال الاسم"} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
