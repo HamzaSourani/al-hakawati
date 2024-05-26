@@ -126,7 +126,9 @@ const FileInputPage = () => {
             <DialogClose asChild>
               <Button variant={"outline"}>لاحقا</Button>
             </DialogClose>
-            <Button>اطلب الآن</Button>
+            <DialogClose asChild>
+              <Button>اطلب الآن</Button>
+            </DialogClose>
           </DialogFooter>
         </DialogContent>
       </Dialog>

@@ -72,133 +72,137 @@ const SubscribeForm = () => {
     } catch (error) {}
   };
   return (
-    <div className="flex flex-col justify-center items-center gap-8 rounded-xl bg-white/50 py-8 px-16 backdrop-blur-sm min-h-[60vh]   ">
-      <h1 className="text-xl md:text-2xl  lg:text-3xl font-bold">
-        قم بتسجيل الدخول للتمتع بأروع قصص الاطفال
-      </h1>
-      <Form {...form}>
-        <form
-          className="flex flex-col w-full h-full justify-center  gap-8"
-          onSubmit={form.handleSubmit(handleSendUserEmail)}
-        >
-          <div className="grid   grid-cols-1 justify-center  gap-4  md:grid-cols-2">
-            <FormField
-              control={form.control}
-              name="ageCategory"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>عمر الطفل</FormLabel>
-                  <Select
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                  >
-                    <FormControl>
-                      <SelectTrigger>
-                        <SelectValue placeholder="إختر الفئة العمرية" />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      <SelectItem value="1">4 / 7</SelectItem>
-                      <SelectItem value="2">8/12</SelectItem>
-                    </SelectContent>
-                  </Select>
+    <div className="flex justify-center ">
+      <div className="flex flex-col justify-center items-center gap-8 rounded-xl bg-white/50 py-8 px-16 backdrop-blur-sm min-h-[60vh]   ">
+        <h1 className="text-xl md:text-2xl  lg:text-3xl font-bold">
+          قم بتسجيل الدخول للتمتع بأروع قصص الاطفال
+        </h1>
+        <Form {...form}>
+          <form
+            className="flex flex-col w-full h-full justify-center  gap-8"
+            onSubmit={form.handleSubmit(handleSendUserEmail)}
+          >
+            <div className="grid   grid-cols-1 justify-center  gap-4  md:grid-cols-2">
+              <FormField
+                control={form.control}
+                name="ageCategory"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>عمر الطفل</FormLabel>
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="إختر الفئة العمرية" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        <SelectItem value="1">4 / 7</SelectItem>
+                        <SelectItem value="2">8/12</SelectItem>
+                      </SelectContent>
+                    </Select>
 
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="name"
-              render={({ field }) => (
-                <FormItem className="">
-                  <FormLabel>{"الاسم"}</FormLabel>
-                  <FormControl>
-                    <Input {...field} placeholder={"قم بادخال الاسم"} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="isDeaf"
-              render={({ field }) => (
-                <FormItem className="space-y-3">
-                  <FormLabel>هل الطفل اصم؟</FormLabel>
-                  <FormControl>
-                    <RadioGroup
-                      onValueChange={field.onChange}
-                      defaultValue={field.value}
-                      className="flex flex-col space-y-1"
-                    >
-                      <FormItem className="flex items-center space-x-3 space-y-0">
-                        <FormControl>
-                          <RadioGroupItem value={"1"} />
-                        </FormControl>
-                        <FormLabel className="font-normal">نعم </FormLabel>
-                      </FormItem>
-                      <FormItem className="flex items-center space-x-3 space-y-0">
-                        <FormControl>
-                          <RadioGroupItem value={"0"} />
-                        </FormControl>
-                        <FormLabel className="font-normal">لا </FormLabel>
-                      </FormItem>
-                    </RadioGroup>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="isParent"
-              render={({ field }) => (
-                <FormItem className="space-y-3">
-                  <FormLabel>نمط القصة</FormLabel>
-                  <FormControl>
-                    <RadioGroup
-                      onValueChange={field.onChange}
-                      defaultValue={field.value}
-                      className="flex flex-col space-y-1"
-                    >
-                      <FormItem className="flex items-center space-x-3 space-y-0">
-                        <FormControl>
-                          <RadioGroupItem value={"1"} />
-                        </FormControl>
-                        <FormLabel className="font-normal">نمط الاب </FormLabel>
-                      </FormItem>
-                      <FormItem className="flex items-center space-x-3 space-y-0">
-                        <FormControl>
-                          <RadioGroupItem value="0" />
-                        </FormControl>
-                        <FormLabel className="font-normal">
-                          نمط الابن{" "}
-                        </FormLabel>
-                      </FormItem>
-                    </RadioGroup>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </div>
-          <div className=" ">
-            <Button
-              type="submit"
-              disabled={form.formState.isSubmitting}
-              size={"sm"}
-            >
-              {"تسجيل الدخول"}
-              {form.formState.isSubmitting ? (
-                <LoaderCircleIcon className="mr-2 w-4 animate-spin fill-secondary " />
-              ) : (
-                <SendHorizonalIcon className="mr-2 w-4 fill-secondary" />
-              )}
-            </Button>
-          </div>
-        </form>
-      </Form>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="name"
+                render={({ field }) => (
+                  <FormItem className="">
+                    <FormLabel>{"الاسم"}</FormLabel>
+                    <FormControl>
+                      <Input {...field} placeholder={"قم بادخال الاسم"} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="isDeaf"
+                render={({ field }) => (
+                  <FormItem className="space-y-3">
+                    <FormLabel>هل الطفل اصم؟</FormLabel>
+                    <FormControl>
+                      <RadioGroup
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                        className="flex flex-col space-y-1"
+                      >
+                        <FormItem className="flex items-center space-x-3 space-y-0">
+                          <FormControl>
+                            <RadioGroupItem value={"1"} />
+                          </FormControl>
+                          <FormLabel className="font-normal">نعم </FormLabel>
+                        </FormItem>
+                        <FormItem className="flex items-center space-x-3 space-y-0">
+                          <FormControl>
+                            <RadioGroupItem value={"0"} />
+                          </FormControl>
+                          <FormLabel className="font-normal">لا </FormLabel>
+                        </FormItem>
+                      </RadioGroup>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="isParent"
+                render={({ field }) => (
+                  <FormItem className="space-y-3">
+                    <FormLabel>نمط القصة</FormLabel>
+                    <FormControl>
+                      <RadioGroup
+                        onValueChange={field.onChange}
+                        defaultValue={field.value}
+                        className="flex flex-col space-y-1"
+                      >
+                        <FormItem className="flex items-center space-x-3 space-y-0">
+                          <FormControl>
+                            <RadioGroupItem value={"1"} />
+                          </FormControl>
+                          <FormLabel className="font-normal">
+                            نمط الاب{" "}
+                          </FormLabel>
+                        </FormItem>
+                        <FormItem className="flex items-center space-x-3 space-y-0">
+                          <FormControl>
+                            <RadioGroupItem value="0" />
+                          </FormControl>
+                          <FormLabel className="font-normal">
+                            نمط الابن{" "}
+                          </FormLabel>
+                        </FormItem>
+                      </RadioGroup>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+            <div className=" ">
+              <Button
+                type="submit"
+                disabled={form.formState.isSubmitting}
+                size={"sm"}
+              >
+                {"تسجيل الدخول"}
+                {form.formState.isSubmitting ? (
+                  <LoaderCircleIcon className="mr-2 w-4 animate-spin fill-secondary " />
+                ) : (
+                  <SendHorizonalIcon className="mr-2 w-4 fill-secondary" />
+                )}
+              </Button>
+            </div>
+          </form>
+        </Form>
+      </div>
     </div>
   );
 };

@@ -13,6 +13,8 @@ import {
   DialogHeader,
   DialogTitle,
 } from "../../components/ui/dialog";
+import URL from "../../constants/domain";
+
 const CameraInputPage = () => {
   const [open, setOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -121,7 +123,9 @@ const CameraInputPage = () => {
             <DialogClose asChild>
               <Button variant={"outline"}>لاحقا</Button>
             </DialogClose>
-            <Button>اطلب الآن</Button>
+            <DialogClose asChild>
+              <Button>اطلب الآن</Button>
+            </DialogClose>
           </DialogFooter>
         </DialogContent>
       </Dialog>
