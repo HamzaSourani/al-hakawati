@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import URL from "../../constants/domain";
+import { LoaderCircleIcon } from "lucide-react";
 import {
   Dialog,
   DialogClose,
@@ -12,13 +12,17 @@ import {
   DialogTitle,
 } from "../../components/ui/dialog";
 import { Button } from "../../components/ui/button";
+import URL from "../../constants/domain";
 const FileInputPage = () => {
   const [open, setOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const navigate = useNavigate();
+
   const handleFileInputChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
+    setIsLoading(true);
     const file = event.target.files?.[0];
     const category =
       JSON.parse(localStorage.getItem("userInfo") ?? "")?.ageCategory ?? "2";
@@ -32,11 +36,13 @@ const FileInputPage = () => {
         try {
           const { data } = await axios.post(`${URL}/receive_story`, formData);
           if (String(data.name) === "0") {
+            setIsLoading(false);
             setOpen(true);
           } else {
             navigate(`/result/${data.name}`);
           }
         } catch (error) {
+          setIsLoading(false);
           setOpen(true);
         }
       };
@@ -63,22 +69,29 @@ const FileInputPage = () => {
           </svg>
         </div>
       </div>
-      <div
-        className="relative group p-8 bg-white shadow-md shadow-white rounded-md cursor-pointer"
-        onClick={handleFileInputClick}
-      >
-        <img
-          className="fill-primary group-hover:scale-105 transition-transform w-40  aspect-square"
-          src="/assets/images/pajama.jpg"
-          alt="pajama"
-        />
-        <input
-          type="file"
-          ref={fileInputRef}
-          className="absolute top-0 left-0 w-0 h-0 opacity-0"
-          onChange={handleFileInputChange}
-        />
-      </div>
+      {isLoading ? (
+        <div className="flex items-center bg-white rounded-md shadow-md justify-center w-48 aspect-square">
+          <LoaderCircleIcon className="animate-spin" />
+        </div>
+      ) : (
+        <div
+          className="relative group p-8 bg-white shadow-md shadow-white rounded-md cursor-pointer"
+          onClick={handleFileInputClick}
+        >
+          <img
+            className="fill-primary group-hover:scale-105 transition-transform w-40  aspect-square"
+            src="/assets/images/pajama.jpg"
+            alt="pajama"
+          />
+          <input
+            type="file"
+            ref={fileInputRef}
+            className="absolute top-0 left-0 w-0 h-0 opacity-0"
+            onChange={handleFileInputChange}
+          />
+        </div>
+      )}
+
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent>
           <DialogHeader>

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Webcam from "react-webcam";
+import { LoaderCircleIcon } from "lucide-react";
 import { Button } from "../../components/ui/button";
 import {
   Dialog,
@@ -14,6 +15,7 @@ import {
 } from "../../components/ui/dialog";
 const CameraInputPage = () => {
   const [open, setOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const webcamRef = React.useRef<Webcam>(null!);
   const navigate = useNavigate();
@@ -39,6 +41,7 @@ const CameraInputPage = () => {
     if (!webcamRef) {
       return;
     }
+    setIsLoading(true);
     const image = webcamRef.current.getScreenshot();
     const category =
       JSON.parse(localStorage.getItem("userInfo") ?? "")?.ageCategory ?? "2";
@@ -52,11 +55,14 @@ const CameraInputPage = () => {
       try {
         const { data } = await axios.post(`${URL}/receive_story`, formData);
         if (String(data.name) === "0") {
+          setIsLoading(false);
           setOpen(true);
         } else {
           navigate(`/result/${data.name}`);
         }
       } catch (error) {
+        setIsLoading(false);
+
         setOpen(true);
       }
     };
@@ -65,13 +71,22 @@ const CameraInputPage = () => {
 
   return (
     <div className="flex flex-col items-center gap-8  absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 justify-center">
-      <Webcam
-        className="rounded-md w-80  border border-border"
-        audio={false}
-        ref={webcamRef}
-        screenshotFormat="image/jpeg"
-      />
-      <Button onClick={capture}>إلتقاط الصورة</Button>
+      {isLoading ? (
+        <div className="flex items-center bg-white rounded-md shadow-md justify-center w-80 aspect-square">
+          <LoaderCircleIcon className="animate-spin" />
+        </div>
+      ) : (
+        <>
+          <Webcam
+            className="rounded-md w-80  border border-border"
+            audio={false}
+            ref={webcamRef}
+            screenshotFormat="image/jpeg"
+          />
+          <Button onClick={capture}>إلتقاط الصورة</Button>
+        </>
+      )}
+
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent>
           <DialogHeader>
