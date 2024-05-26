@@ -1,7 +1,6 @@
 import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { BearPajama } from "../../components/svg";
 import URL from "../../constants/domain";
 import {
   Dialog,

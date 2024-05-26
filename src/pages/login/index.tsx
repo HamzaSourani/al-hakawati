@@ -68,7 +68,7 @@ const SubscribeForm = () => {
       const res = await fakeApi(values);
       localStorage.setItem("userInfo", JSON.stringify(res));
       form.reset();
-      navigate("/");
+      navigate("/file-input");
     } catch (error) {}
   };
   return (
